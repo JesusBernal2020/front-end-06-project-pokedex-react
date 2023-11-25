@@ -67,10 +67,12 @@ const Pokedex = () => {
   return (
     <main>
       <Header />
-      <article className="py-5 px-2 flex flex-col gap-4">
-        <p>
-          <span className="text-red-600 font-bold">Welcome {nameTrainer}!</span>{' '}
-          here you can find your favorite pokemon:
+      <article className=" dark:bg-zinc-900  p-4 flex flex-col gap-4">
+        <p className="md:py-5 md:px-10 md:text-xl dark:text-white">
+          <span className="text-red-600 font-bold dark:text-yellow-500 ">
+            Welcome {nameTrainer}!
+          </span>
+          , here you can find your favorite pokemon:
         </p>
         <form
           onSubmit={handleSubmit}
@@ -80,20 +82,14 @@ const Pokedex = () => {
             <input
               id="namePokemon"
               placeholder="Type a name pokemon..."
-              className="w-52 shadow-xl border border-gray-500/20 px-2 outline-none"
+              className="w-52 md:w-64 lg:w-96 rounded-l-md shadow-xl  border border-gray-500/20 px-2 outline-none"
               type="text"
             />
-            <button className="bg-red-600 text-white py-2 px-3">Search</button>
+            <button className="bg-red-600 dark:bg-yellow-500   hover:bg-red-500 transition-all duration-300 rounded-r-md ease-in-out text-white py-2 px-3">
+              Search
+            </button>
           </div>
           <DropdownSelect types={types} handleChangeType={setCurrentType} />
-          {/* <select onChange={handleChangeType}>
-            <option value="">All</option>
-            {types.map((type) => (
-              <option value={type.name} key={type.url}>
-                {type.name}
-              </option>
-            ))}
-          </select> */}
         </form>
       </article>
       <PokemonsList pokemons={pokemonsByName} />

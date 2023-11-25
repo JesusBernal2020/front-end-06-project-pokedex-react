@@ -66,3 +66,24 @@ export const textColors = {
   unknown: 'text-[#ABDAC6]',
   shadow: 'text-[#ABDAC6]',
 };
+
+export const bgColor = {
+  grass: 'bg-[#80c7c5]',
+  fire: 'bg-[#e6931e]',
+  water: 'bg-[#1479FB]',
+  bug: 'bg-[#3BB039]',
+  normal: 'bg-[#BC6B7C]',
+  fighting: 'bg-[#F1613C]',
+  poison: 'bg-[#A564E3]',
+  ghost: 'bg-[#454AA8]',
+  electric: 'bg-[#2B319B]',
+  ground: 'bg-[#895C1A]',
+  psychic: 'bg-[#D13E3E]',
+  rock: 'bg-[#8D8D94]',
+  ice: 'bg-[#64CBF5]',
+  dragon: 'bg-[#56A4AE]',
+  dark: 'bg-[#0D1211]',
+  steel: 'bg-[#728881]',
+  fairy: 'bg-[#C23867]',
+  flying: 'bg-[#7CAFC2]',
+};

@@ -27,7 +27,7 @@ const PokemonCart = ({ pokemonUrl }) => {
   return (
     <Link
       to={`/pokedex/${pokemon?.name}`}
-      className={`w-[275px] rounded-md border-[10px] hover:shadow-[0_20px_50px_rgba(0,0,0,0.40)] transition-all duration-500 ease-in-out ${
+      className={`w-[275px] rounded-md border-[10px] hover:shadow-[0_20px_50px_rgba(0,0,0,0.40)] dark:hover:shadow-[0_20px_35px_rgba(255,_255,_255,_0.432)] transition-all duration-500 ease-in-out mx-auto ${
         bordersColors[pokemon?.types[0].type.name]
       }`}
     >
@@ -39,7 +39,7 @@ const PokemonCart = ({ pokemonUrl }) => {
       >
         <div className="absolute px-12 -bottom-10">
           <img
-            className="drop-shadow-[0_20px_35px_rgba(0,0,0,0.35)]"
+            className="drop-shadow-[0_20px_35px_rgba(0,0,0,0.35)] dark:drop-shadow-[0_20px_35px_rgba(255,_255,_255,_0.3)]"
             src={pokemon?.sprites.other.home.front_default}
             alt=""
           />
@@ -55,7 +55,7 @@ const PokemonCart = ({ pokemonUrl }) => {
           >
             {pokemon?.name}
           </h3>
-          <h5 className="text-xl capitalize">
+          <h5 className="text-xl dark:text-yellow-500 capitalize">
             {formatTypesPokemons(pokemon?.types)}
           </h5>
           <span className="text-sm text-[#9F9F9F]">Type</span>

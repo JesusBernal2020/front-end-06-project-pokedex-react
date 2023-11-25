@@ -3,7 +3,7 @@ import PokemonCart from './PokemonCart';
 
 const PokemonsList = ({ pokemons }) => {
   return (
-    <section className="grid gap-5 px-4 justify-center">
+    <section className="flex dark:bg-zinc-900 flex-wrap gap-y-12 px-4 xl:px-14 py-12">
       {pokemons.map((pokemon) => (
         <PokemonCart key={pokemon.url} pokemonUrl={pokemon.url} />
       ))}

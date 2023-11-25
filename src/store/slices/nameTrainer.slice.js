@@ -1,10 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const nameTrainerSlice = createSlice({
-  initialState: '',
+  initialState: localStorage.getItem('nameTrainer') ?? '',
   name: 'nameTrainer',
   reducers: {
     setNameTrainer: (state, action) => {
+      localStorage.setItem('nameTrainer', action.payload);
       return action.payload;
     },
   },

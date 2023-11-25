@@ -19,7 +19,7 @@ const DropdownSelect = ({ types, handleChangeType }) => {
         <button
           type="button"
           onClick={toggleDropdown}
-          className="w-72 inline-flex justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-red-600 shadow-lg focus:outline-none focus:ring-2 focus:ring-red-600"
+          className="w-72 md:w-80 lg:w-96 inline-flex dark:hover:bg-yellow-500 hover:bg-red-500 transition-all duration-300 ease-out hover:text-white justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-red-600 dark:text-yellow-500 dark:hover:text-white shadow-lgfocus:outline-none focus:ring-2 focus:ring-red-600 dark:focus:ring-yellow-500"
         >
           Types
           <svg
@@ -33,7 +33,7 @@ const DropdownSelect = ({ types, handleChangeType }) => {
         </button>
       </div>
       {isOpen && (
-        <div className="z-10 origin-top-right absolute right-0 mt-2 w-72 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
+        <div className="z-10 origin-top-right absolute right-0 mt-2 w-72 md:w-80 lg:w-96 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
           <div
             className="py-1"
             role="menu"
@@ -42,7 +42,7 @@ const DropdownSelect = ({ types, handleChangeType }) => {
           >
             <div
               onClick={() => handleSelectType('')}
-              className="capitalize block px-4 py-2 text-sm text-gray-700 hover:bg-red-400 hover:text-white cursor-pointer"
+              className="capitalize block px-4 py-2 text-sm text-gray-700 hover:bg-red-400 dark:hover:bg-yellow-300 hover:text-white cursor-pointer"
             >
               All
             </div>
@@ -50,7 +50,7 @@ const DropdownSelect = ({ types, handleChangeType }) => {
               <div
                 key={type.url}
                 onClick={() => handleSelectType(type.name)}
-                className="capitalize block px-4 py-2 text-sm text-gray-700 hover:bg-red-400 hover:text-white cursor-pointer"
+                className="capitalize block px-4 py-2 text-sm text-gray-700 dark:hover:bg-yellow-300 hover:bg-red-400 hover:text-white cursor-pointer"
               >
                 {type.name}
               </div>

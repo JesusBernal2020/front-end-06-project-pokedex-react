@@ -1,6 +1,6 @@
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
-import Pokedex from './pages/Pokedex';
+import Pokedex from './Pages/Pokedex';
 import ProtectedRoutes from './components/auth/ProtectedRoutes';
 import PokemonId from './Pages/PokemonId';
 import Home from './Pages/Home';
@@ -38,27 +38,3 @@ function App() {
 }
 
 export default App;
-
-// import { Route, Routes } from 'react-router-dom';
-// import './App.css';
-
-// import Pokedex from './pages/Pokedex';
-// import ProtectedRoutes from './components/auth/ProtectedRoutes';
-// import PokemonId from './Pages/PokemonId';
-// import Home from './Pages/Home';
-
-// function App() {
-//   return (
-//     <section className='font-["Inter"]'>
-//       <Routes>
-//         <Route path="/" element={<Home />} />
-//         <Route element={<ProtectedRoutes />}>
-//           <Route path="/pokedex" element={<Pokedex />} />
-//           <Route path="/pokedex/:pokemonName" element={<PokemonId />} />
-//         </Route>
-//       </Routes>
-//     </section>
-//   );
-// }
-
-// export default App;

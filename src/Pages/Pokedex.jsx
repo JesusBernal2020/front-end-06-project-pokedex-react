@@ -14,6 +14,8 @@ const Pokedex = () => {
 
   const [currentType, setCurrentType] = useState('');
 
+  const [currentPage, setCurrentPage] = useState(1);
+
   const nameTrainer = useSelector((store) => store.nameTrainer);
 
   const pokemonsByName = pokemons.filter((pokemon) =>
@@ -25,13 +27,55 @@ const Pokedex = () => {
     setNamePokemon(e.target.namePokemon.value);
   };
 
-  /* const handleChangeType = (e) => {
-    setCurrentType(e.target.value);
-  }; */
+  const paginationLogic = () => {
+    /// CANTINDAD DE POKEMONS POR PAGINA
+    const POKEMONS_PER_PAGE = 12;
+
+    //pokemons que se van a mostrar en la pagina actual
+    const sliceStart = (currentPage - 1) * POKEMONS_PER_PAGE;
+    const sliceEnd = sliceStart + POKEMONS_PER_PAGE;
+    const pokemonInPage = pokemonsByName.slice(sliceStart, sliceEnd);
+
+    //ultima pagina
+    const lastPage = Math.ceil(pokemonsByName.length / POKEMONS_PER_PAGE) || 1;
+
+    // bloque actual
+
+    const PAGES_PER_BLOCK = 5;
+    const actualBlock = Math.ceil(currentPage / PAGES_PER_BLOCK);
+
+    //paginas que se van a mostrar en el bloque actual
+
+    const pagesInBlock = [];
+    const minPage = (actualBlock - 1) * PAGES_PER_BLOCK + 1;
+    const maxPage = actualBlock * PAGES_PER_BLOCK;
+    for (let i = minPage; i <= maxPage; i++) {
+      if (i <= lastPage) {
+        pagesInBlock.push(i);
+      }
+    }
+    return { pokemonInPage, lastPage, pagesInBlock };
+  };
+
+  const { pagesInBlock, lastPage, pokemonInPage } = paginationLogic();
+
+  const handleClickPreviusPage = () => {
+    const newCurrentPage = currentPage - 1;
+    if (newCurrentPage >= 1) {
+      setCurrentPage(newCurrentPage);
+    }
+  };
+
+  const handleClickNextPage = () => {
+    const newCurrentPage = currentPage + 1;
+    if (newCurrentPage <= lastPage) {
+      setCurrentPage(newCurrentPage);
+    }
+  };
 
   useEffect(() => {
     if (!currentType) {
-      const URL = 'https://pokeapi.co/api/v2/pokemon?limit=40';
+      const URL = 'https://pokeapi.co/api/v2/pokemon?limit=1281';
 
       axios
         .get(URL)
@@ -64,6 +108,10 @@ const Pokedex = () => {
     }
   }, [currentType]);
 
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [namePokemon, currentType]);
+
   return (
     <main>
       <Header />
@@ -92,7 +140,49 @@ const Pokedex = () => {
           <DropdownSelect types={types} handleChangeType={setCurrentType} />
         </form>
       </article>
-      <PokemonsList pokemons={pokemonsByName} />
+      <PokemonsList pokemons={pokemonInPage} />
+      <ul className="flex gap-3 dark:bg-zinc-900 justify-center py-10 px-2 flex-wrap ">
+        {/*pagina anterior */}
+        <li
+          onClick={() => setCurrentPage(1)}
+          className="p-3 bg-red-600 dark:bg-yellow-500 hover:dark:bg-yellow-300  text-white rounded-md cursor-pointer transition-all duration-300 ease-out hover:bg-red-400"
+        >
+          <i className="bx bx-chevrons-left text-2xl"></i>
+        </li>
+
+        <li
+          onClick={handleClickPreviusPage}
+          className="p-3 bg-red-600 dark:bg-yellow-500 hover:dark:bg-yellow-300  text-white rounded-md cursor-pointer transition-all duration-300 ease-out hover:bg-red-400"
+        >
+          <i className="bx bx-chevron-left text-2xl"></i>
+        </li>
+        {pagesInBlock.map((numberPage) => (
+          <li
+            onClick={() => setCurrentPage(numberPage)}
+            className={`py-4 px-5 bg-red-600 dark:bg-yellow-500 hover:dark:bg-yellow-300  text-white rounded-md cursor-pointer transition-all duration-300 ease-out hover:bg-red-400 ${
+              numberPage === currentPage && 'bg-red-400 dark:bg-yellow-300'
+            }`}
+            key={numberPage}
+          >
+            {numberPage}
+          </li>
+        ))}
+
+        {/*pagina siguiente */}
+        <li
+          onClick={handleClickNextPage}
+          className="p-3 bg-red-600 dark:bg-yellow-500 hover:dark:bg-yellow-300  text-white rounded-md cursor-pointer transition-all duration-300 ease-out hover:bg-red-400"
+        >
+          <i className="bx bx-chevron-right text-2xl"></i>
+        </li>
+        {/*ultima pagina */}
+        <li
+          onClick={() => setCurrentPage(lastPage)}
+          className="p-3 bg-red-600 dark:bg-yellow-500 hover:dark:bg-yellow-300 text-white rounded-md cursor-pointer transition-all duration-300 ease-out hover:bg-red-400"
+        >
+          <i className="bx bx-chevrons-right text-2xl"></i>
+        </li>
+      </ul>
     </main>
   );
 };

@@ -48,7 +48,7 @@ The project is completed with essential functionalities implemented. Continuous 
 
 ## Project Access
 
-You can access the deployed project via this [Pokedex App](https://weather-app-jbx.netlify.app). Additionally, you have the option to clone the project, install the necessary packages using `npm install`, and run it using `npm run dev`.
+You can access the deployed project via this [Pokedex App](https://pokedex-app-vll.netlify.app). Additionally, you have the option to clone the project, install the necessary packages using `npm install`, and run it using `npm run dev`.
 
 ## Developers
 
